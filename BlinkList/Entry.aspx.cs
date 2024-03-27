@@ -20,22 +20,25 @@ namespace BlinkList
 
         protected void Login_Event(object sender, EventArgs e)
         {
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["BlinkList_db"].ToString()))
+            if(tbEmail.Text.Trim() !="" && tbPassword.Text.Trim() != "")
             {
-                con.Open();
-                using (SqlCommand cmd = new SqlCommand("ProcLogin", con))
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["BlinkList_db"].ToString()))
                 {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@UserEmail", tbEmail.Text);
-                    cmd.Parameters.AddWithValue("@UserPassword", tbPassword.Text);
-                    SqlDataReader dr = cmd.ExecuteReader();
-                    if (dr.Read() && dr["UserExist"].ToString() == "True")
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("ProcLogin", con))
                     {
-                        Session["User"] = new Dictionary<string, string>() { {"UserName", dr["UserName"].ToString() },
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@UserEmail", tbEmail.Text);
+                        cmd.Parameters.AddWithValue("@UserPassword", tbPassword.Text);
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        if (dr.Read() && dr["UserExist"].ToString() == "True")
+                        {
+                            Session["User"] = new Dictionary<string, string>() { {"UserName", dr["UserName"].ToString() },
                             {"UserEmail", dr["UserEmail"].ToString() }
                         };
-                        //ScriptManager.RegisterStartupScript(this, GetType(), "Login", "var newUser = { email: '"+tbEmail.Text+"', password: '"+tbPassword.Text+"' }; localStorage.setItem(\"users\", JSON.stringify(newUser));", true);
-                        Response.Redirect("BlinkList.aspx");
+                            //ScriptManager.RegisterStartupScript(this, GetType(), "Login", "var newUser = { email: '"+tbEmail.Text+"', password: '"+tbPassword.Text+"' }; localStorage.setItem(\"users\", JSON.stringify(newUser));", true);
+                            Response.Redirect("BlinkList.aspx");
+                        }
                     }
                 }
             }
@@ -43,19 +46,22 @@ namespace BlinkList
 
         protected void Register_Event(object sender, EventArgs e)
         {
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["BlinkList_db"].ToString()))
+            if(tbEmailReg.Text.Trim() != "" && tbPasswordReg.Text.Trim() != "" && tbConfirmPasswordReg.Text.Trim() != "")
             {
-                con.Open();
-                using (SqlCommand cmd = new SqlCommand("ProcRegister", con))
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["BlinkList_db"].ToString()))
                 {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@UserEmail", tbEmailReg.Text);
-                    cmd.Parameters.AddWithValue("@UserName", tbUsernameReg.Text);
-                    cmd.Parameters.AddWithValue("@UserPassword", tbPasswordReg.Text);
-                    SqlDataReader dr = cmd.ExecuteReader();
-                    if (dr.Read() && dr["UserExist"].ToString() != "True")
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("ProcRegister", con))
                     {
-                        Response.Redirect("Entry.aspx");
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@UserEmail", tbEmailReg.Text);
+                        cmd.Parameters.AddWithValue("@UserName", tbUsernameReg.Text);
+                        cmd.Parameters.AddWithValue("@UserPassword", tbPasswordReg.Text);
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        if (dr.Read() && dr["UserExist"].ToString() != "True")
+                        {
+                            Response.Redirect("Entry.aspx");
+                        }
                     }
                 }
             }
