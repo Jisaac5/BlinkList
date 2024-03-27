@@ -98,8 +98,9 @@
     <form id="form1" runat="server">
         
         <nav class="navbar navbar-expand-lg">
-            <a class="navbar-brand" href="index.html">
-                <img src="blinklogo2.png" alt="Logo" style="max-height: 40px;" /></a>
+            <a class="navbar-brand" href="BlinkList.aspx">
+                <img src="blinklogo2.png" alt="Logo" style="max-height: 40px;" />
+            </a>
         </nav>
         <div class="container">
             <div class="row justify-content-center">
@@ -121,7 +122,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="password">Password</label>
-                                                <asp:TextBox ID="tbPassword" runat="server" class="form-control" placeholder="Password"></asp:TextBox>
+                                                <asp:TextBox ID="tbPassword" runat="server" class="form-control" placeholder="Password" TextMode="Password"></asp:TextBox>
                                                 <div id="login-password-error" class="text-danger"></div>
                                                 <!-- Container for password validation message -->
                                             </div>
@@ -154,7 +155,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="tbPasswordReg">* Create a password</label>
-                                                <asp:TextBox ID="tbPasswordReg" runat="server" class="form-control" placeholder="Password"></asp:TextBox>
+                                                <asp:TextBox ID="tbPasswordReg" runat="server" class="form-control" placeholder="Password" TextMode="Password"></asp:TextBox>
                                                 <div id="signup-password-error" class="text-danger"></div>
                                                 <!-- Container for password validation message -->
                                                 <small id="passwordHelp" class="form-text text-muted">8 to 25 characters long that
@@ -164,7 +165,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="tbConfirmPasswordReg">* Confirm Password</label>
-                                                <asp:TextBox ID="tbConfirmPasswordReg" runat="server" type="password" class="form-control" placeholder="Retype password" ></asp:TextBox>
+                                                <asp:TextBox ID="tbConfirmPasswordReg" runat="server" type="password" class="form-control" placeholder="Retype password" TextMode="Password"></asp:TextBox>
                                                 <div id="signup-confirm-password-error" class="text-danger"></div>
                                                 <!-- Container for confirm password validation message -->
                                             </div>

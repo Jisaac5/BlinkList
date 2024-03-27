@@ -55,7 +55,7 @@ namespace BlinkList
                     SqlDataReader dr = cmd.ExecuteReader();
                     if (dr.Read() && dr["UserExist"].ToString() != "True")
                     {
-                        Response.Redirect("BlinkList.aspx");
+                        Response.Redirect("Entry.aspx");
                     }
                 }
             }
