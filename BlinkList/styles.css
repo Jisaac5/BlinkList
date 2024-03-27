@@ -401,7 +401,7 @@ background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(58,52,52,1) 43%, rgba(1
 }
 
 
-#queueContainer.active {
+#queueContainer.active, #lyricsContainer.active {
   display: block; /* Show when active */
 }
 
@@ -943,7 +943,7 @@ background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(58,52,52,1) 43%, rgba(1
   vertical-align: middle;
   margin-right: 5px
 }
-.queue-container {
+.queue-container, .lyrics-container {
   position: fixed;
   top: 0;
   right: -400px; /* Initially hide the queue container */
@@ -955,7 +955,7 @@ background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(58,52,52,1) 43%, rgba(1
   z-index: 1000; /* Ensure it's on top of other elements */
 }
 
-.queue-container.active {
+.queue-container.active, .lyrics-container.active {
   right: 0; /* Show the queue container when active */
 }
 .queue-list::-webkit-scrollbar-thumb {
@@ -1123,7 +1123,7 @@ background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(58,52,52,1) 43%, rgba(1
 }
 
 
-.qcon {
+.qcon, .lycon {
   background-color:transparent; /* Dark background color */
   color: #fff; /* Text color */
   padding: 20px; /* Padding */

@@ -140,7 +140,16 @@
                     <h3>Queue</h3>
                     <ul id="queueItems" class="queue-items"></ul>
                 </div>
-                <div id="Lyrics" class="lyrics"></div>
+                <%--<div id="Lyrics" class="lyrics"></div>--%>
+            </div>
+
+            <%-- Lyrics container --%>
+            <div class="lyrics-container" id="lyricsContainer">
+                <div class="lyrics" id="Lyrics">
+                    <%--<div class="lycon">
+                        <h3>Lyrics</h3>
+                    </div>--%>
+                </div>
             </div>
         </div>
 
@@ -231,7 +240,7 @@
             var queueContainer = document.getElementById("queueContainer");
 
             // Get the lyrics container element
-            var lyricsContainer = document.getElementById("Lyrics");
+            var lyricsContainer = document.getElementById("lyricsContainer");
 
             // Get the queue button element
             var queueButton = document.getElementById("queueButton");
@@ -242,13 +251,22 @@
             // Get the qcon element
             var qcon = document.querySelector(".qcon");
 
+            // Get lycon element
+            var lycon = document.querySelector(".lycon");
+
             // Add click event listener to the queue button
             queueButton.addEventListener("click", function () {
-                // Toggle the 'active' class on the queue container
-                queueContainer.classList.toggle("active");
+                //Toggle the 'active' class on the queue container
+                if (lyricsContainer.classList.contains("active")) {
+                    lyricsContainer.classList.toggle("active");
+                    queueContainer.classList.toggle("active");
+                }
+                else {
+                    queueContainer.classList.toggle("active");
+                }
 
-                // Hide the lyrics container
-                lyricsContainer.style.display = "none";
+                //Hide the lyrics container
+                lyrics.style.display = "none";
 
                 // Show the qcon
                 qcon.style.display = "block";
@@ -257,24 +275,22 @@
             // Add click event listener to the audio control button
             audioControlButton.addEventListener("click", function () {
                 // Toggle the 'active' class on the queue container
-                queueContainer.classList.toggle("active");
+                if (queueContainer.classList.contains("active")) {
+                    queueContainer.classList.toggle("active");
+                    lyricsContainer.classList.toggle("active");
+                }
+                else {
+                    lyricsContainer.classList.toggle("active");
+                }
 
-                // Hide the qcon
+                //Hide the lyrics container
+                lyrics.style.display = "block";
+
+                // Show the qcon
                 qcon.style.display = "none";
-
-                // Display the lyrics container
-                lyricsContainer.style.display = "block";
             });
 
 
-            // Function to close the queue container when clicking outside of it
-            //document.addEventListener("click", function(event) {
-            // Check if the clicked element is not the queue button or inside the queue container
-            //  if (!event.target.closest("#queueButton") && !event.target.closest("#queueContainer")) {
-            // Remove the 'active' class from the queue container
-            //    queueContainer.classList.remove("active");
-            //  }
-            //});
         </script>
     </form>
 
